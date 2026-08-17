@@ -193,9 +193,6 @@ func (s *Store) Audit() (int, error) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	for h, c := range s.blocks {
-		if len(c) == 0 {
-			continue
-		}
 		if HashOf(c) != h {
 			return len(s.blocks), fmt.Errorf("cas: integrity violation for %s", h)
 		}
